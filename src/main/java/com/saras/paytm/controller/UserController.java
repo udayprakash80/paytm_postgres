@@ -1,7 +1,7 @@
 package com.saras.paytm.controller;
 
-import com.saras.paytm.entity.PaytmUser;
-import com.saras.paytm.service.UserService;
+import com.saras.paytm.entity.Users;
+import com.saras.paytm.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @GetMapping(value="/")
     public String ping(){
@@ -20,8 +20,8 @@ public class UserController {
 
     @PostMapping(value="/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public PaytmUser addUser(@RequestBody PaytmUser paytmUser){
-        return userService.addUser(paytmUser);
+    public Users addUser(@RequestBody Users paytmUser){
+        return userDetailsServiceImpl.addUser(paytmUser);
     }
 
 }

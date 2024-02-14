@@ -1,15 +1,19 @@
 package com.saras.paytm.repository;
 
-import com.saras.paytm.entity.PaytmUser;
+import com.saras.paytm.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<PaytmUser, Integer> {
+public interface UserRepository extends JpaRepository<Users, Integer> {
 
-    Optional<PaytmUser> findByUserName(String userName);
+    Boolean existsByUsername(String username);
+    Optional<Users> findByUsername(String username);
+    Boolean existsByEmail(String email);
+
 
 }
